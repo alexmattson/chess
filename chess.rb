@@ -17,6 +17,10 @@ class Chess
     until @board.check_mate?(@current_player.color)
       make_move
     end
+    # loop do
+    #   make_move
+    # end
+    @display.render(@current_player.color)
     puts "#{@current_player.name} won!"
   end
 
@@ -35,7 +39,6 @@ class Chess
     when "3"
       @players = [ComputerPlayer.new("jeff",:white,@display), ComputerPlayer.new("Alex", :black,@display)]
     end
-
   end
 
   #handle move

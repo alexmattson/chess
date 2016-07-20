@@ -1,5 +1,7 @@
 require_relative 'piece.rb'
 
+require 'byebug'
+
 class Pawn < Piece
 
   def initialize(color,position, board)
@@ -49,9 +51,9 @@ class Pawn < Piece
     row = @position[0]
     col = @position[1]
     if @color == :black
-      return [[row + 1, col]] if @board[[row + 1, col]].is_a?(NullPiece)
+      return [[row + 1, col]] if (row + 1 <= 7) && @board[[row + 1, col]].is_a?(NullPiece)
     else
-      return [[row - 1, col]]  if @board[[row - 1, col]].is_a?(NullPiece)
+      return [[row - 1, col]] if (row - 1 >= 0) && @board[[row - 1, col]].is_a?(NullPiece)
     end
     []
   end

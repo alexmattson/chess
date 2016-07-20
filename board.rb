@@ -32,6 +32,7 @@ class Board
   def move_piece(start, end_pos, turn_color)
     raise 'from position is empty' if self[start].empty?
     piece = self[start]
+
     if piece.color != turn_color
       raise 'You must move your own piece'
     elsif !piece.moves.include?(end_pos)
@@ -39,8 +40,8 @@ class Board
     elsif !piece.valid_moves.include?(end_pos)
       raise 'You cannot move into check'
     end
-    taken_pieces << self[end_pos] if taking_piece?(end_pos,turn_color)
 
+    taken_pieces << self[end_pos] if taking_piece?(end_pos,turn_color)
     move_piece!(start, end_pos)
   end
 
@@ -55,11 +56,13 @@ class Board
     self[end_pos].color != color
   end
 
+  #checkmate
   def check_mate?(color)
     return false unless in_check?(color)
     pieces.any? do |piece|
-      piece.color == color && piece.moves.length == 0
+      return false if piece.color == color && piece.valid_moves.length > 0
     end
+    true
   end
 
   #finding check
@@ -81,9 +84,7 @@ class Board
   def pieces
     pieces = []
     @grid.each do |row|
-      row.each do |pos|
-        pieces << pos unless pos.empty?
-      end
+      row.each { |pos| pieces << pos unless pos.empty? }
     end
     pieces
   end
@@ -94,6 +95,7 @@ class Board
     true
   end
 
+  # Setting pieces
   def set_pieces
       set_pawns
       set_rook
