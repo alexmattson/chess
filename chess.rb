@@ -15,11 +15,10 @@ class Chess
     until @board.check_mate?(@current_player.color)
       make_move
     end
-    # loop do
-    #   make_move
-    # end
     @display.render(@current_player.color)
-    puts "#{@current_player.name} won!"
+    puts "It looks like #{@current_player.name} has lost."
+    winner = @players.reject{|pl| pl == @current_player}.first
+    puts "Congratulations #{winner.name} on kicking ass!"
   end
 
   private
@@ -28,11 +27,11 @@ class Chess
     @display.game_options
     case gets.chomp
     when "1"
-      @players = [HumanPlayer.new("white",:white,@display), HumanPlayer.new("black", :black,@display)]
+      @players = [HumanPlayer.new("White",:white,@display), HumanPlayer.new("Black", :black,@display)]
     when "2"
-      @players = [HumanPlayer.new("white",:white,@display), ComputerPlayer.new("black", :black,@display)]
+      @players = [HumanPlayer.new("White",:white,@display), ComputerPlayer.new("Black", :black,@display)]
     when "3"
-      @players = [ComputerPlayer.new("white",:white,@display), ComputerPlayer.new("black", :black,@display)]
+      @players = [ComputerPlayer.new("White",:white,@display), ComputerPlayer.new("Black", :black,@display)]
     end
   end
 

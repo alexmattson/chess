@@ -53,6 +53,10 @@ class Display
       end
       print " #{idx1+1}  "
 
+      if (idx1 == 0 && color == :black) || (idx1 == 7 && color == :white)
+        print "It's #{color}'s turn"
+      end
+
       # taken black pieces
       if idx1 == 6
         @board.taken_pieces.each do |piece|
