@@ -17,7 +17,7 @@ module PawnPromotion
 
   def pawn_promotion?(start, end_pos)
     return false unless self[start].is_a?(Pawn)
-    (self[start].color == :black && end_pos[0] == 8) ||
+    (self[start].color == :black && end_pos[0] == 7) ||
     (self[start].color == :white && end_pos[0] == 0)
   end
 

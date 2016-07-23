@@ -45,9 +45,9 @@ class Display
 
           # coloring normal spaces
           elsif (idx1 + idx2).odd?
-              print pos.to_s.colorize(:color => pos.color, :background => :cyan)
-          else
               print pos.to_s.colorize(:color => pos.color, :background => :light_blue)
+          else
+              print pos.to_s.colorize(:color => pos.color, :background => :cyan)
           end
 
       end

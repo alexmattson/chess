@@ -67,15 +67,18 @@ class Pawn < Piece
     return home_row if @moved
     row = @position[0]
     col = @position[1]
-    if @color == :black &&
-      @board[[row+1, col]].empty? &&
-      @board[[row+2, col]].empty?
-      home_row << [row + 2, col]
-    end
-    if @color == :white &&
-      @board[[row-1, col]].empty? &&
-      @board[[row-2, col]].empty?
-      home_row << [row - 2, col]
+    if @color == :black
+      return home_row if row > 3
+      if @board[[row+1, col]].empty? &&
+         @board[[row+2, col]].empty?
+        home_row << [row + 2, col]
+      end
+    else
+      return home_row if row < 4
+      if @board[[row-1, col]].empty? &&
+         @board[[row-2, col]].empty?
+         home_row << [row - 2, col]
+       end
     end
     home_row
   end
@@ -95,6 +98,7 @@ class Pawn < Piece
     possible_attacks = []
     row = @position[0]
     col = @position[1]
+    return possible_attacks if row == 7 || row == 0
     if @color == :black
       unless @board[[row + 1, col+1]].is_a?(NullPiece) || row + 1 > 7 ||  col + 1 > 7
         possible_attacks << [row+1, col+1] if @board[[row + 1, col+1]].color == :white

@@ -14,6 +14,7 @@ module EnPassant
 
   def en_passant_update_positions(start, end_pos)
     self[end_pos].position = end_pos
+    self[end_pos].moved = true
     taken_pieces << self[@last_move]
     self[@last_move] = NullPiece.instance
   end
