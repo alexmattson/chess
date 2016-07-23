@@ -1,4 +1,5 @@
 module Castling
+
   def castling!(start, end_pos)
     king = self[start]
     rook = self[end_pos]
@@ -20,6 +21,15 @@ module Castling
     true
   end
 
+  def castling_setup(start, end_pos)
+  end
+
+  def castling_initialization
+  end
+
+  def castling_helper(start, end_pos)
+  end
+
   def get_rook_and_king_movement(start, end_pos)
     if start[1] > end_pos[1]
       king_end = [start[0], start[1] - 2]
@@ -36,6 +46,5 @@ module Castling
     self[king_end].moved = true
     self[rook_end].moved = true
   end
-
 
 end

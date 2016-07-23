@@ -18,10 +18,44 @@ class Pawn < Piece
     possible += home_row
     possible += front_open
     possible += check_attack
+    possible += en_passant
   end
 
 
   private
+
+  def en_passant
+    possible = []
+    return possible unless en_passant?
+    if @color == :white
+      if @board.last_move[1] > @position[1]
+        possible << [@position[0] - 1, @position[1] + 1]
+      else
+        possible << [@position[0] - 1, @position[1] - 1]
+      end
+    else
+      if @board.last_move[1] > @position[1]
+        possible << [@position[0] + 1, @position[1] + 1]
+      else
+        possible << [@position[0] + 1, @position[1] - 1]
+      end
+    end
+  end
+
+  def en_passant?
+    return false unless @board.en_passant
+    return false if @board[@board.last_move].color == @color
+    if @color == :white
+      return true if (@board.last_move[1] + 1 == @position[1]  ||
+                      @board.last_move[1] - 1 == @position[1]) &&
+                      @board.last_move[0] == @position[0]
+    else
+      return true if (@board.last_move[1] + 1 == @position[1]  ||
+                      @board.last_move[1] - 1 == @position[1]) &&
+                      @board.last_move[0] == @position[0]
+    end
+    false
+  end
 
   def set_unicode
     @unicode =  "\u265F"

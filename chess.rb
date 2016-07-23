@@ -55,7 +55,7 @@ class Chess
     swap_turn!
   # rescue StandardError => e
   #   puts e
-  #   sleep 0.5
+  #   sleep 1
   #   @display.reset!
   #   retry
   end

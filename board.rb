@@ -10,6 +10,7 @@ class Board
     @grid = Array.new(8) { Array.new(8) }
     @taken_pieces = []
     set_board
+    run_special_moves_initializations
   end
 
   def set_board
@@ -46,6 +47,7 @@ class Board
       move_piece!(start, end_pos)
       self[end_pos].moved = true
     end
+    special_move_helpers(start, end_pos)
   end
 
   def move_piece!(start, end_pos)
