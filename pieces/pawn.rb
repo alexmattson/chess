@@ -24,7 +24,7 @@ class Pawn < Piece
   private
 
   def set_unicode
-    @unicode = @color == :black ? "\u265F" : "\u2659"
+    @unicode =  "\u265F" 
   end
 
   #move helpers

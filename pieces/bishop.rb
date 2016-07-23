@@ -10,7 +10,7 @@ class Bishop < Piece
   end
 
   def set_unicode
-    @unicode = @color == :black ? "\u265D" : "\u2657"
+    @unicode = "\u265D"
   end
 
   def to_s

@@ -10,7 +10,7 @@ class Display
 
   def initialize(board)
     @board = board
-    @cursor_pos = [0,0]
+    @cursor_pos = [6,4]
     @selected = nil
     @grid = board.grid
   end
@@ -24,33 +24,50 @@ class Display
     @grid.each_with_index do |row,idx1|
       print "#{idx1+1} "
       row.each_with_index do |pos,idx2|
+          # cursor position
           if [idx1,idx2] == @cursor_pos
-            print pos.to_s.colorize(:color => :black, :background => :red)
+            print pos.to_s.colorize(:color => pos.color, :background => :red)
+
+          # selected piece
           elsif [idx1,idx2] == @selected
-            print pos.to_s.colorize(:color => :black, :background => :green)
+            print pos.to_s.colorize(:color => pos.color, :background => :green)
+
+          # valid moves of selected piece (only works if piece selected)
           elsif !@selected.nil? && @board[@selected].valid_moves.include?([idx1,idx2]) &&
                 @board[@selected].color == color
-            print pos.to_s.colorize(:color => :black, :background => :green)
+            print pos.to_s.colorize(:color => pos.color, :background => :yellow)
+
+          # valid moves on hover (only works if no piece is selected)
           elsif @board[@cursor_pos].valid_moves.include?([idx1,idx2]) &&
                 @board[@cursor_pos].color == color &&
                 @selected.nil?
-            print pos.to_s.colorize(:color => :black, :background => :green)
+            print pos.to_s.colorize(:color => pos.color, :background => :yellow)
+
+          # coloring normal spaces
           elsif (idx1 + idx2).odd?
-            print pos.to_s.colorize(:color => :black, :background => :yellow)
+              print pos.to_s.colorize(:color => pos.color, :background => :cyan)
           else
-            print pos.to_s.colorize(:color => :black, :background => :blue)
+              print pos.to_s.colorize(:color => pos.color, :background => :light_blue)
           end
 
       end
-      print " #{idx1+1}"
+      print " #{idx1+1}  "
+
+      # taken black pieces
       if idx1 == 6
         @board.taken_pieces.each do |piece|
-          print piece.to_s if piece.color == :black
+          if piece.color == :black
+            print piece.to_s.colorize(:color => :black, :background => :white)
+          end
         end
       end
-      if idx1 == 7
+
+      # taken white pieces
+      if idx1 == 1
         @board.taken_pieces.each do |piece|
-          print piece.to_s if piece.color == :white
+          if piece.color == :white
+            print piece.to_s.colorize(:color => :white, :background => :black)
+          end
         end
       end
       puts ""
@@ -64,6 +81,24 @@ class Display
 
   def reset!
     @selected = nil
+  end
+
+  def intro
+    system("clear")
+    puts '  ____ _   _ _____ ____ ____  '
+    puts ' / ___| | | | ____/ ___/ ___| '
+    puts '| |   | |_| |  _| \___ \___ \ '
+    puts '| |___|  _  | |___ ___) |__) |'
+    puts ' \____|_| |_|_____|____/____/ '
+    puts '    a game by Alex Mattson    '
+    puts '------------------------------'
+  end
+
+  def game_options
+    puts "Choose game a type:"
+    puts "1 - Human vs Human"
+    puts "2 - Human vs Computer"
+    puts "3 - Computer vs Computer"
   end
 
   private

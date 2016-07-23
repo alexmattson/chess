@@ -10,7 +10,7 @@ class Queen < Piece
   end
 
   def set_unicode
-    @unicode = @color == :black ? "\u265B" : "\u2655"
+    @unicode = "\u265B" 
   end
 
   def to_s

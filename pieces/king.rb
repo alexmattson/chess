@@ -1,5 +1,6 @@
 require_relative 'piece.rb'
 require_relative 'stepable.rb'
+require 'byebug'
 
 class King < Piece
   include Stepable
@@ -10,7 +11,7 @@ class King < Piece
   end
 
   def set_unicode
-    @unicode = @color == :black ? "\u265A" : "\u2654"
+    @unicode ="\u265A" 
   end
 
   def to_s
@@ -27,4 +28,13 @@ class King < Piece
     [-1,-1],
     [ 1, 1]]
   end
+
+  # def moves
+  #   debugger
+  #   base_moves += castling_moves
+  # end
+  #
+  # def castling_moves
+  #   []
+  # end
 end

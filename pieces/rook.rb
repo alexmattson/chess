@@ -10,7 +10,7 @@ class Rook < Piece
   end
 
   def set_unicode
-    @unicode = @color == :black ? "\u265C" : "\u2656"
+    @unicode = "\u265C" 
   end
 
   def to_s

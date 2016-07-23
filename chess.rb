@@ -9,6 +9,8 @@ class Chess
   def initialize
     @board = Board.new
     @display = Display.new(@board)
+
+    @display.intro
     @players = set_players
     @current_player = @players[0]
   end
@@ -27,10 +29,7 @@ class Chess
   private
 
   def set_players
-    puts "Choose game type"
-    puts "1 - Human vs Human"
-    puts "2 - Human vs Computer"
-    puts "3 - Computer vs Computer"
+    @display.game_options
     case gets.chomp
     when "1"
       @players = [HumanPlayer.new("jeff",:white,@display), HumanPlayer.new("Alex", :black,@display)]
