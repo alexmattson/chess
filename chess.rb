@@ -32,11 +32,11 @@ class Chess
     @display.game_options
     case gets.chomp
     when "1"
-      @players = [HumanPlayer.new("jeff",:white,@display), HumanPlayer.new("Alex", :black,@display)]
+      @players = [HumanPlayer.new("white",:white,@display), HumanPlayer.new("black", :black,@display)]
     when "2"
-      @players = [HumanPlayer.new("jeff",:white,@display), ComputerPlayer.new("Alex", :black,@display)]
+      @players = [HumanPlayer.new("white",:white,@display), ComputerPlayer.new("black", :black,@display)]
     when "3"
-      @players = [ComputerPlayer.new("jeff",:white,@display), ComputerPlayer.new("Alex", :black,@display)]
+      @players = [ComputerPlayer.new("white",:white,@display), ComputerPlayer.new("black", :black,@display)]
     end
   end
 
@@ -57,11 +57,11 @@ class Chess
       end
     end
     swap_turn!
-  rescue StandardError => e
-    puts e
-    sleep 0.5
-    @display.reset!
-    retry
+  # rescue StandardError => e
+  #   puts e
+  #   sleep 0.5
+  #   @display.reset!
+  #   retry
   end
 
   def move_to

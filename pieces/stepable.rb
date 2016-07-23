@@ -1,6 +1,6 @@
 module Stepable
 
-  def moves
+  def base_moves
     possible = []
     move_diffs.each do |move|
       row = @position[0]

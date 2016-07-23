@@ -1,11 +1,12 @@
 require 'byebug'
 class Piece
-  attr_accessor :position
+  attr_accessor :position, :moved
   attr_reader :color
   def initialize(color,position, board)
     @color = color
     @position = position
     @board = board
+    @moved = false
   end
 
   def empty?

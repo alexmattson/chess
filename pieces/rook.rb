@@ -3,6 +3,7 @@ require_relative 'slideable.rb'
 
 class Rook < Piece
   include Slideable
+  STARTING_POS = [[0,0],[0,7],[7,0],[7,7]]
 
   def initialize(color, position, board)
     super
@@ -10,7 +11,7 @@ class Rook < Piece
   end
 
   def set_unicode
-    @unicode = "\u265C" 
+    @unicode = "\u265C"
   end
 
   def to_s

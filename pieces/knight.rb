@@ -10,7 +10,7 @@ class Knight < Piece
   end
 
   def set_unicode
-    @unicode = "\u265E" 
+    @unicode = "\u265E"
   end
 
   def to_s
@@ -28,7 +28,7 @@ class Knight < Piece
     [ 2, 1]]
   end
 
-  # def moves
-  #   base_moves
-  # end
+  def moves
+    base_moves
+  end
 end

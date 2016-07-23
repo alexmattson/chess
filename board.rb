@@ -1,6 +1,9 @@
 require_relative 'pieces.rb'
+require_relative 'special_moves.rb'
+require 'byebug'
 
 class Board
+  include SpecialMoves
   attr_reader :grid, :taken_pieces
 
   def initialize()
@@ -36,10 +39,18 @@ class Board
     end
 
     taken_pieces << self[end_pos] if taking_piece?(end_pos,turn_color)
-    move_piece!(start, end_pos)
+
+    if special_move?(start, end_pos)
+      handle_special_move(start, end_pos)
+    else
+      move_piece!(start, end_pos)
+      self[end_pos].moved = true
+    end
   end
 
   def move_piece!(start, end_pos)
+    return handle_special_move!(start, end_pos) if special_move?(start, end_pos)
+
     piece = self[start]
     self[end_pos] = piece
     self[start] = NullPiece.instance
