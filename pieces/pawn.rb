@@ -24,23 +24,22 @@ class Pawn < Piece
   private
 
   def set_unicode
-    @unicode =  "\u265F" 
+    @unicode =  "\u265F"
   end
 
   #move helpers
   def home_row
     home_row = []
+    return home_row if @moved
     row = @position[0]
     col = @position[1]
-    if row == 1 &&
-      @color == :black &&
-      @board[[row+1, col]].color != @color &&
+    if @color == :black &&
+      @board[[row+1, col]].empty? &&
       @board[[row+2, col]].empty?
       home_row << [row + 2, col]
     end
-    if row == 6 &&
-      @color == :white &&
-      @board[[row-1, col]].color != @color &&
+    if @color == :white &&
+      @board[[row-1, col]].empty? &&
       @board[[row-2, col]].empty?
       home_row << [row - 2, col]
     end
