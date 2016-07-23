@@ -10,4 +10,12 @@ class HumanPlayer < Player
     display.get_input
   end
 
+  def get_pawn_promotion
+    system("clear")
+    puts "Pawn promotion time!"
+    puts "Do you want a Queen, rook, knight, or bishop?"
+    gets.chomp.downcase
+  end
+
+
 end

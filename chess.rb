@@ -5,7 +5,6 @@ class Chess
   def initialize
     @board = Board.new
     @display = Display.new(@board)
-
     @display.intro
     @players = set_players
     @current_player = @players[0]

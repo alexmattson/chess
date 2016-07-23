@@ -5,15 +5,18 @@
 
 require_relative 'castling.rb'
 require_relative 'en_passant.rb'
+require_relative 'pawn_promotion.rb'
 
 require 'byebug'
 
 module SpecialMoves
   include Castling
   include EnPassant
+  include PawnPromotion
 
   ADDONS = ["castling",
-            "en_passant"]
+            "en_passant",
+            "pawn_promotion"]
 
   def run_special_moves_initializations
     ADDONS.each do |special|

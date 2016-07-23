@@ -21,6 +21,9 @@ class ComputerPlayer < Player
     true
   end
 
+  def get_pawn_promotion
+    return "queen"
+  end
 
 
 #get selection
