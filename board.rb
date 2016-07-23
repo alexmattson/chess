@@ -1,5 +1,5 @@
-require_relative 'pieces.rb'
-require_relative 'special_moves.rb'
+require_relative 'dependencies/pieces.rb'
+require_relative 'special_moves/special_moves.rb'
 require 'byebug'
 
 class Board

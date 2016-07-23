@@ -1,6 +1,5 @@
-require 'byebug'
-require_relative 'pieces.rb'
-require_relative 'player.rb'
+require_relative '../../dependencies/pieces.rb'
+require_relative '../player.rb'
 
 class ComputerPlayer < Player
   VALUES = {Queen.new(nil,nil,nil) => 9,

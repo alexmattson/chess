@@ -1,8 +1,4 @@
-require 'byebug'
-require_relative 'humanplayer.rb'
-require_relative 'computerplayer.rb'
-require_relative 'board.rb'
-require_relative 'display.rb'
+require_relative 'dependencies/dependencies.rb'
 
 class Chess
 
