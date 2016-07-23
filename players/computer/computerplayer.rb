@@ -56,7 +56,7 @@ class ComputerPlayer < Player
       if !@display.board[pos].is_a?(NullPiece) &&
           @display.board[pos].color != @color
          return pos
-       end
+      end
     end
     choose_random_valid_move(piece)
   end

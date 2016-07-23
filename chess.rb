@@ -11,16 +11,24 @@ class Chess
   end
 
   def play
-    until @board.check_mate?(@current_player.color)
+    until @board.check_mate?(@current_player.color) || @board.draw?
       make_move
     end
     @display.render(@current_player.color)
-    puts "It looks like #{@current_player.name} has lost."
-    winner = @players.reject{|pl| pl == @current_player}.first
-    puts "Congratulations #{winner.name} on kicking ass!"
+    handle_end_game
   end
 
   private
+
+  def handle_end_game
+    if @board.check_mate?(@current_player.color)
+      puts "It looks like #{@current_player.name} has lost."
+      winner = @players.reject{|pl| pl == @current_player}.first
+      puts "Congratulations #{winner.name} on kicking ass!"
+    else
+      puts "It was a draw"
+    end
+  end
 
   def set_players
     @display.game_options

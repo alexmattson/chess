@@ -9,6 +9,7 @@ class Board
   def initialize()
     @grid = Array.new(8) { Array.new(8) }
     @taken_pieces = []
+    @turns_since_last_taken = 0
     set_board
     run_special_moves_initializations
   end
@@ -39,7 +40,12 @@ class Board
       raise 'You cannot move into check'
     end
 
-    taken_pieces << self[end_pos] if taking_piece?(end_pos,turn_color)
+    if taking_piece?(end_pos,turn_color)
+      taken_pieces << self[end_pos]
+      @turns_since_last_taken = 0
+    else
+      @turns_since_last_taken += 1
+    end
 
     if special_move?(start, end_pos)
       handle_special_move(start, end_pos)
@@ -63,13 +69,35 @@ class Board
     self[end_pos].color != color
   end
 
-  #checkmate
+  # end game conditions
   def check_mate?(color)
-    return false unless in_check?(color)
     pieces.any? do |piece|
       return false if piece.color == color && piece.valid_moves.length > 0
     end
     true
+  end
+
+  def draw?
+    pieces = []
+    @grid.each do |row|
+      row.each do |space|
+        pieces << space.class unless space.is_a?(NullPiece)
+      end
+    end
+
+    if pieces.length == 2 && pieces.count(King) == 2
+      return true
+    end
+    if pieces.length == 3 && pieces.count(King) == 2 && pieces.count(Bishop) == 1
+      return true
+    end
+    if pieces.length == 3 && pieces.count(King) == 2 && pieces.count(Knight) == 1
+      return true
+    end
+    if @turns_since_last_taken == 40
+      return true
+    end
+    false
   end
 
   #finding check
