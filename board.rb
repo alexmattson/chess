@@ -19,12 +19,12 @@ class Board
   end
 
   def [](position)
-    x,y = position
+    x, y = position
     @grid[x][y]
   end
 
-  def []=(position, value )
-    x,y = position
+  def []=(position, value)
+    x, y = position
     @grid[x][y] = value
   end
 
@@ -66,7 +66,7 @@ class Board
   end
 
   def taking_piece?(end_pos, color)
-    self[end_pos].color != color
+    self[end_pos].color != color && !self[end_pos].color.nil?
   end
 
   # end game conditions
@@ -84,7 +84,6 @@ class Board
         pieces << space.class unless space.is_a?(NullPiece)
       end
     end
-
     if pieces.length == 2 && pieces.count(King) == 2
       return true
     end

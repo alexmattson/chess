@@ -47,8 +47,6 @@ class King < Piece
     possible
   end
 
-  private
-
   def possible_castle?(pos)
     piece = @board[pos]
     piece.is_a?(Rook) &&
@@ -56,6 +54,9 @@ class King < Piece
     piece.moved == false &&
     clear_path?(pos)
   end
+  
+  private
+
 
   def clear_path?(rook_pos)
     row = @position[0]
