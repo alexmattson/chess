@@ -13,4 +13,4 @@ Chess is an exercise to build a command line chess game from the ground up.
 
 It is a fully playable game and I hope you enjoy it!
 
-[![Screenshot](/doc/chess_sample.gif)](//github.com/amattson21/chess/)
+![Imgur](http://i.imgur.com/oYF5FdK.gif)
